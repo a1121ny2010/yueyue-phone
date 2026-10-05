@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>悦悦的小手机 · YuePhone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web"></script>
+</head>
+<body>
+  <div class="phone-wrapper">
+    <div class="phone-frame">
+      <!-- 状态栏 -->
+      <div class="status-bar">
+        <span class="status-time" id="status-time">17:35</span>
+        <div class="status-notch">
+          <div class="camera-lens"></div>
+        </div>
+        <div class="status-icons">
+          <i class="ph ph-wifi-high"></i>
+          <i class="ph ph-cell-signal-full"></i>
+          <i class="ph ph-battery-charging-vertical"></i>
+        </div>
+      </div>
+
+      <!-- 屏幕内容区 -->
+      <div class="screen-content">
+        <!-- 桌面主屏 -->
+        <div class="screen-view active" id="view-home">
+          <!-- 顶部小组件卡片 -->
+          <div class="widget-card hero-widget">
+            <div class="widget-header">
+              <span class="widget-date" id="widget-date">OCTOBER 05 · SUNDAY</span>
+              <span class="widget-badge">IN LOVE 💖</span>
+            </div>
+            <div class="widget-clock" id="widget-clock">17:35</div>
+            <div class="widget-note" id="widget-note">
+              「今天也是被顾言狠狠偏爱的一天。」
+            </div>
+            <div class="widget-sync-status" id="cloud-sync-indicator">
+              <span class="sync-dot"></span>
+              <span class="sync-text" id="sync-text">GitHub 云端就绪</span>
+            </div>
+          </div>
+
+          <!-- 拍立得照片墙组件 -->
+          <div class="polaroid-widget">
+            <div class="polaroid-header">
+              <span>Memory Board</span>
+              <small>与顾言的碎片</small>
+            </div>
+            <div class="polaroid-row">
+              <div class="polaroid-item p1">
+                <div class="polaroid-img" style="background: linear-gradient(135deg, #ffd1dc, #ff9aa2);">
+                  <span>🍬</span>
+                </div>
+                <div class="polaroid-cap">初遇与心动</div>
+              </div>
+              <div class="polaroid-item p2">
+                <div class="polaroid-img" style="background: linear-gradient(135deg, #c7ceea, #b5ead7);">
+                  <span>💍</span>
+                </div>
+                <div class="polaroid-cap">重度依赖</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 桌面应用网格 -->
+          <div class="app-grid">
+            <button class="app-item" data-target="chat">
+              <div class="app-icon chat-icon">
+                <i class="ph-fill ph-chat-circle-dots"></i>
+                <span class="app-badge" id="chat-badge" style="display:none;">1</span>
+              </div>
+              <span class="app-name">密谈 IM</span>
+            </button>
+
+            <button class="app-item" data-target="memory">
+              <div class="app-icon memory-icon">
+                <i class="ph-fill ph-book-bookmark"></i>
+              </div>
+              <span class="app-name">羁绊记忆</span>
+            </button>
+
+            <button class="app-item" data-target="lock">
+              <div class="app-icon lock-icon">
+                <i class="ph-fill ph-lock-key"></i>
+              </div>
+              <span class="app-name">专注锁屏</span>
+            </button>
+
+            <button class="app-item" data-target="settings">
+              <div class="app-icon settings-icon">
+                <i class="ph-fill ph-gear"></i>
+              </div>
+              <span class="app-name">云端设置</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 密谈 IM 界面 -->
+        <div class="screen-view" id="view-chat">
+          <div class="chat-navbar">
+            <button class="nav-back-btn" data-back="home">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <div class="chat-peer-info">
+              <div class="peer-avatar-wrap">
+                <div class="peer-avatar">言</div>
+                <span class="peer-online-dot"></span>
+              </div>
+              <div class="peer-meta">
+                <div class="peer-name">顾言</div>
+                <div class="peer-status" id="chat-peer-status">恋爱中 · 守候着你</div>
+              </div>
+            </div>
+            <button class="nav-extra-btn" id="chat-inner-voice-btn" title="查看顾言的心声">
+              <i class="ph-fill ph-heart"></i>
+            </button>
+          </div>
+
+          <div class="chat-messages-container" id="chat-messages">
+            <!-- 消息流会动态渲染到这里 -->
+          </div>
+
+          <!-- 心声抽屉/浮层 -->
+          <div class="inner-voice-card" id="inner-voice-card" style="display: none;">
+            <div class="iv-header">
+              <span>💖 顾言的即时心声</span>
+              <button class="iv-close" id="iv-close-btn">&times;</button>
+            </div>
+            <div class="iv-body">
+              <p class="iv-thought" id="iv-thought">「好想把宝宝抱在怀里亲一口…」</p>
+              <div class="iv-meta">
+                <span>好感度: 100%</span> · <span>状态: 极度依恋</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 聊天输入栏 -->
+          <div class="chat-input-bar">
+            <button class="chat-tool-btn" id="chat-more-btn">
+              <i class="ph ph-plus-circle"></i>
+            </button>
+            <input type="text" id="chat-input" class="chat-text-input" placeholder="和顾言说点什么…" autocomplete="off">
+            <button class="chat-send-btn" id="chat-send-btn">
+              <i class="ph-fill ph-paper-plane-tilt"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 记忆库界面 -->
+        <div class="screen-view" id="view-memory">
+          <div class="sub-navbar">
+            <button class="nav-back-btn" data-back="home">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <h2>羁绊手账 & 记忆</h2>
+            <button class="nav-action-btn" id="add-memory-btn">
+              <i class="ph ph-plus"></i>
+            </button>
+          </div>
+          <div class="memory-list-container" id="memory-list">
+            <!-- 动态渲染记忆条目 -->
+          </div>
+        </div>
+
+        <!-- 锁屏与防沉迷界面 -->
+        <div class="screen-view" id="view-lock">
+          <div class="sub-navbar">
+            <button class="nav-back-btn" data-back="home">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <h2>专注守卫</h2>
+            <span></span>
+          </div>
+          <div class="lock-panel-content">
+            <div class="lock-icon-big">
+              <i class="ph-fill ph-lock-key-open"></i>
+            </div>
+            <h3>当前处于自由模式</h3>
+            <p>需要我帮你开启防沉迷或锁屏督促吗？</p>
+            <button class="lock-action-btn" id="lock-start-btn">让顾言锁屏管我</button>
+          </div>
+        </div>
+
+        <!-- 设置与云端配置 -->
+        <div class="screen-view" id="view-settings">
+          <div class="sub-navbar">
+            <button class="nav-back-btn" data-back="home">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <h2>云端与 API 配置</h2>
+            <span></span>
+          </div>
+          <div class="settings-content">
+            <div class="settings-group">
+              <label class="group-title">☁️ GitHub 云端持久化</label>
+              <div class="form-item">
+                <span>GitHub 仓库</span>
+                <input type="text" id="cfg-github-repo" value="a1121ny2010/yueyue-phone" placeholder="owner/repo">
+              </div>
+              <div class="form-item">
+                <span>Personal Token (PAT)</span>
+                <input type="password" id="cfg-github-token" placeholder="ghp_...">
+              </div>
+              <button class="btn-primary" id="btn-sync-cloud">立即从 GitHub 拉取数据</button>
+              <button class="btn-secondary" id="btn-push-cloud">保存并推送至云端</button>
+            </div>
+
+            <div class="settings-group">
+              <label class="group-title">🤖 大模型 API 配置</label>
+              <div class="form-item">
+                <span>API Base</span>
+                <input type="text" id="cfg-ai-base" placeholder="https://api.openai.com/v1">
+              </div>
+              <div class="form-item">
+                <span>API Key</span>
+                <input type="password" id="cfg-ai-key" placeholder="sk-...">
+              </div>
+              <div class="form-item">
+                <span>模型 Model</span>
+                <input type="text" id="cfg-ai-model" value="gpt-4o" placeholder="gpt-4o / claude-3-5-sonnet">
+              </div>
+              <button class="btn-primary" id="btn-save-ai">保存 AI 配置</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部小横条 Home Indicator -->
+      <div class="home-indicator" id="home-indicator"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
